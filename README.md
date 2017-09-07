@@ -43,13 +43,123 @@ A list of CLI wallet commands is available
 [here](https://github.com/PBSA/peerplays/blob/master/libraries/wallet/include/graphene/wallet/wallet.hpp).
 
 
-Testnet
+Public Testnet
 ----------------------
-- chain-id - 5b37954aa0d33a8e0d57b084995c262a7c13dbc0693d3e96654e63ff45a9ceec
+- chain-id - 34e0d6d2c1072fbe2dc584bac76b67424aa938ce374d280c153354ba55f88c24
 
 Register your username at the faucet address
 ---------------------------
-https://595-dev.pixelplex.by/
+Pending ...
+
+
+If starting the blockchain from scratch
+----------------------
+1. Start up the node without any parameters.
+
+```
+witness_node
+```
+
+This should start the node and create the witness_node_data_dir directory and a default configuration file.
+
+2. Kill/stop the node.  The clean way to kill is to find the process ID of the witness_node process, and then send a kill signal for it.
+
+3. Modify the node's configuration file (witness_node_data_dir/config.ini) to "start" the empty chain by operating all of the initial witnesses. The following settings should be specified.
+
+# Peer-to-peer (P2P) endpoint
+# Public P2P endpoint
+p2p-endpoint = 0.0.0.0:6666
+
+# API Server
+# Private local API Server example:  rpc-endpoint = 127.0.0.1:8090
+# or
+# Public API Server with a TLS endpoint example:  rpc-tls-endpoint = 1.2.3.5:5678
+rpc-endpoint = 127.0.0.1:8090
+
+# Operate all of the initial witnesses that defined the genesis file
+witness-id = "1.6.1"
+witness-id = "1.6.2"
+witness-id = "1.6.3"
+witness-id = "1.6.4"
+witness-id = "1.6.5"
+witness-id = "1.6.6"
+witness-id = "1.6.7"
+witness-id = "1.6.8"
+witness-id = "1.6.9"
+witness-id = "1.6.10"
+witness-id = "1.6.11"
+
+# Enable production of blocks because no other blocks yet exist
+enable-stale-production = true
+
+
+4. Re-start up the node without any parameters.
+
+```
+witness_node
+```
+
+You should see
+
+********************************
+*                              *
+*   ------- NEW CHAIN ------   *
+*   - Welcome to Graphene! -   *
+*   ------------------------   *
+*                              *
+********************************
+
+and you should see the node producing blocks.
+
+```
+Generated block #1 with timestamp ...
+```
+
+5. Import the private key for the "bts-adam" account into the wallet (which coincidentally is also the private key for the proper "adam" account)
+```
+import_key adam 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3
+```
+
+6. Transfer some funds from the "bts-adam" account to the "adam" account (which is a "proper" account) that can later create other accounts such as witness accounts
+```
+transfer bts-adam adam 5000 PPYTEST "" true
+```
+
+
+If joining a blockchain that is already running and before your witness account is configured. ("Trusting" Testnet approach)
+----------------------
+1. Start up the node with a local API server that is listening on port 8090
+```
+witness_node --rpc-endpoint 127.0.0.1:8090
+```
+
+2. There is an account on the testnet called "testnet-adam" that initially has funds which can be used to create and register new accounts on the blockchain. If operating on a "trusting" testnet, that account will still have funds when you join.  In this scenario, you can use the funds to register your own witness account by using the CLI. Start by running the CLI on the same machine that is running the witness_node.
+
+```
+cli_wallet
+```
+
+3. Set the password the CLI wallet
+```
+set_password WalletPasswordHere
+unlock WalletPasswordHere
+```
+
+4. Import the private key for the "adam" account.
+```
+import_key adam 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3
+```
+
+5. Create a witness account with suggest_brain_key, create_account_with_brain_key, upgrade_account, create_witness. You will probably also want to vote_for_the_witness. More details farther below.
+
+
+
+If joining a blockchain that is already running and before your witness account is configured. (Faucet Testnet approach)
+----------------------
+To be written ...
+
+
+
 
 
 Use the get_private_key_from_password command
