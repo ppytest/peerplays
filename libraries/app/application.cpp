@@ -163,7 +163,7 @@ namespace detail {
          {
             // t.me/peerplays #seednodes
             vector<string> seeds = {
-
+               "31.171.246.247:6666"              // taconator
             };
             for( const string& endpoint_string : seeds )
             {
