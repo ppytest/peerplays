@@ -45,7 +45,7 @@ A list of CLI wallet commands is available
 
 Public Testnet
 ----------------------
-- chain-id - 34e0d6d2c1072fbe2dc584bac76b67424aa938ce374d280c153354ba55f88c24
+- chain-id - be6b79295e728406cbb7494bcb626e62ad278fa4018699cf8f75739f4c1a81fd
 
 Register your username at the faucet address
 ---------------------------
@@ -156,7 +156,7 @@ import_key adam 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3
 
 If joining a blockchain that is already running and before your witness account is configured. (Faucet Testnet approach)
 ----------------------
-To be written ...
+Pending ...
 
 
 

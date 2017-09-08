@@ -282,7 +282,7 @@
         ],
         "address_auths": []
       },
-      "core_balance": 1000000000000000
+      "core_balance": 100000000000
     }
   ],
   "initial_accounts": [{
