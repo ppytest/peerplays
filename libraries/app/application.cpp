@@ -165,7 +165,8 @@ namespace detail {
             vector<string> seeds = {
                "31.171.246.247:6666",              // taconator
                "seed.ppytest.com:7777",
-               "seed.ppytest.blckchnd.com:7778"    // blckchnd
+               "seed.ppytest.blckchnd.com:7778",   // blckchnd
+               "seed.peerplaysnodes.com:9778"      // wackou
             };
             for( const string& endpoint_string : seeds )
             {
